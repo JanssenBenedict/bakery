@@ -1,7 +1,6 @@
 # Create your tests here.
 from django.test import TestCase, Client
-from django.utils import timezone
-from .models import BakeryItem
+from .models import Product
 
 class mainTest(TestCase):
     def test_main_url_is_exist(self):
@@ -17,7 +16,7 @@ class mainTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_in_stock_item(self):
-        item = BakeryItem.objects.create(
+        item = Product.objects.create(
             name="Black Forest Cake",
             price = 40000,
             description = "A Black Forest Cake, also known as a Black Forest gateau, is a sweet tasting cake that consists of \

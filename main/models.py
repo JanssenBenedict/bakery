@@ -1,11 +1,10 @@
 from django.db import models
 
-class BakeryItem(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.IntegerField()
     description = models.TextField()
     category = models.CharField(max_length=255)
-    #cake,pastry,bread
     quantity = models.IntegerField(default=0)
 
     @property
