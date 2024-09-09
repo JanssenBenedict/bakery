@@ -1,6 +1,6 @@
 # bakery
 
-### Tautan menuju aplikasi PWS:
+### Tautan menuju aplikasi PWS: http://janssen-benedict-bakery.pbp.cs.ui.ac.id/
 
 
 ### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
@@ -25,6 +25,7 @@
 
 
 ### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
+Bagan: https://drive.google.com/file/d/1bxnk8fQtALKch54aiQWUrVZ01ZljJdtv/view?usp=sharing
 Saat pengguna membuat request client ke web aplikasi berbasis Django, request tersebut diteruskan ke server Django. Django kemudian melakukan routing URL pada file urls.py atau mendeteksi path URL yang tepat agar dapat menampilkan data yang ingin diakses oleh request client tersebut. URL kemudian memetakan request kepada view. Penampilan data kepada pengguna diatur oleh view, yang dibentuk melalui fungsi pada file views.py. File views.py mengelola data dengan memanfaatkan model yang telah dibuat pada file models.py, model memiliki peran menghubungkan aplikasi dengan database-nya. Dari views.py, manipulasi terhadap data atau pemerolehan data dapat dilakukan melalui models.py. Data yang diperoleh akan diteruskan ke komponen yang merancang tampilan halaman webnya, yaitu file template HTML-nya. Pada proyek 'bakery', file template yang ada adalah main.html, yang memanfaatkan data yang diperoleh dari views.py untuk menunjukkan tampilan halaman web proyek tersebut. Tampilan halaman web tersebut diteruskan kembali kepada view dan dikembalikan kepada pengguna sebagai response dari requestnya, ini menunjukkan bahwa request telah diterima dan dieksekusikan. Bila terdapat input dari pengguna pada halaman HTML tersebut, data diteruskan kembali kepada view agar dapat dikelola. Jadi, terlihat bahwa komponen-komponen proyek Django tersebut saling berkaitan.
 
 
