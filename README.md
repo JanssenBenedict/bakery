@@ -19,7 +19,7 @@
 
 - Saya juga melakukan inisiasi git pada proyek Django ini dan membuat repository publik pada GitHub dengan nama yang sama, yaitu "bakery". Saya menambahkan file .gitignore, menghubungkan direktori terluar proyek ini dengan repository yang saya buat di GitHub, serta melakukan command add, commit, dan push agar data pada direktori terluar tersimpan pada repository GitHub tersebut.
 
-- Setelah aplikasi 'bakery' sudah diciptakan, saya melakukan deployment proyek ini ke server Pacil Web Service.
+- Setelah aplikasi 'bakery' sudah diciptakan, saya melakukan deployment proyek ini ke server Pacil Web Service. Saya menghubungkan proyek baru yang dibuat pada PWS dengan direktori utama proyek ini dengan menambahkan URL deployment PWS saya ke daftar host (ALLOWED_HOSTS pada settings.py) dan menjalankan command-command yang diperlukan untuk melakukan push atau deployment ke server PWS.
 
 - Saya menciptakan file README.md yang berisi penjelasan mengenai implementasi checklist tugas ini serta menjawab beberapa pertanyaan penting yang lain.
 
