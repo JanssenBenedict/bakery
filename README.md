@@ -3,6 +3,9 @@
 ### Tautan menuju aplikasi PWS: http://janssen-benedict-bakery.pbp.cs.ui.ac.id/
 
 
+### -----------------------------------------------------------------------TUGAS 2-----------------------------------------------------------------------
+
+
 ### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 - Pertama-tama, saya menciptakan direktori untuk proyek Django bakery yang saya ingin buat (direktori terluar). Kemudian, saya membuat dan mengaktifkan virtual environment untuk proyek ini. Setelah itu, saya menginstalasi segala dependencies yang dibutuhkan oleh proyek ini (melalui requirements.txt) dan memulai proyek Django saya yang bernama "bakery". Setelah memastikan bahwa direktori proyek sudah dibuat, saya menambahkan host lokal ke dalam daftar host yang dapat mengakses aplikasi web (menambahkan localhost dan 127.0.0.1 pada ALLOWED_HOSTS di settings.py). Akhirnya, saya perlu memastikan bahwa server Django dapat dijalankan, saya menjalankan server dengan manage.py dan terlihat bahwa pembuatan proyek Django bakery saya berhasil.
@@ -41,3 +44,28 @@ Menurut saya, framework Django dijadikan permulaan pembelajaran pengembangan per
 
 ### 5. Mengapa model pada Django disebut sebagai ORM?
 Model pada Django disebut sebagai ORM karena model pada Django memungkinkan manipulasi data pada suatu database relasional melalui object dan class pada Python (suatu bahasa pemrograman yang berbasis object-oriented). Pada model Django, terjadi pemetaan object-object Python dengan database relasional tersebut, datanya direpresentasikan melalui object Python tersebut dan memungkinkan perubahan dan pengembangan data secara efisien.
+
+
+### -----------------------------------------------------------------------TUGAS 3-----------------------------------------------------------------------
+
+
+Screenshot pengaksesan URL proyek menggunakan Postman: https://drive.google.com/drive/folders/1gF8R9XbeALAtU6zx3gxdKBtbufiL6Kw2?usp=sharing
+
+
+### 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery dibutuhkan dalam pengimplementasian sebuah platform agar seorang pengembang dapat mengirimkan data dari satu stack ke stack lainnya. Dengan adanya data delivery, data yang dibutuhkan dalam pengembangan aplikasi pada platform (seperti data dalam format HTML, JSON, dan XML) dapat diakses dan diproses secara efektif dan tepat.
+
+
+### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Menurut saya, dari apa yang saya dapat peroleh dari berbagai sumber tepercaya, JSON merupakan format yang lebih baik dibandingkan dengan HTML. Asalan mengapa JSON bersifat lebih baik adalah karena JSON bersifat lebih sederhana dan mudah dipahami. Syntax yang digunakan oleh XML bersifat lebih kompleks, sehingga membuat proses membaca dan menulis data menggunakan XML dapat menjadi lebih sulit dibandingkan dengan melakukan hal yang sama menggunakan JSON,  yang menggunakan syntax yang lebih sederhana dan tidak membutuhkan banyak tag. Selain itu, data format JSON bersifat lebih mudah untuk di-parse dibandingkan dengan data format XML. Karena alasan-alasan tersebut, JSON menjadi lebih populer dibandingkan XML.
+
+
+### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Fungsi dari method is_valid() pada form Django adalah untuk memastikan bahwa data yang diinput oleh pengguna pada suatu form Django bersifat valid atau tidak. Method ini memeriksa data yang diinput dan menentukan validitas data tersebut sesuai dengan kondisi validasi yang ditentukan. Jika bersifat valid, akan dikembalikan nilai boolean true. Jika tidak valid, akan dikembalikan nilai boolean false.
+
+
+### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+csrf_token merupakan token unik yang dibutuhkan saat membuat suatu form di Django sebagai elemen keamanan (security) karena dapat mencegah terjadinya serangan CSRF yang berbahaya. Jika csrf_token tidak ditambahkan pada form Django, maka aplikasi tersebut menjadi lebih rentan terhadap serangan-serangan tersebut. Hal ini tentu saja dapat dimanfaatkan oleh penyerang karena server Django tidak akan mengetahui sumber atau origin mana yang tepercaya dan yang mana yang tidak dapat dipercaya. Jadi, saat pengguna terautentikasi pada aplikasi web yang terlihat tepercaya, penyerang dapat saja membuat sebuah form palsu yang akan mengeksekusikan code berbahaya saat pengguna membukanya. Kemudian, code berbahaya itu mengirimkan request ke server dan verifikasi tidak akan terjadi sebab tidak ada csrf_token. 
+
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
