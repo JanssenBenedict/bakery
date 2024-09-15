@@ -3,7 +3,7 @@
 ### Tautan menuju aplikasi PWS: http://janssen-benedict-bakery.pbp.cs.ui.ac.id/
 
 
-### -----------------------------------------------------------------------TUGAS 2-----------------------------------------------------------------------
+### ----------------------------------------------------------------TUGAS 2----------------------------------------------------------------
 
 
 ### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
@@ -46,14 +46,14 @@ Menurut saya, framework Django dijadikan permulaan pembelajaran pengembangan per
 Model pada Django disebut sebagai ORM karena model pada Django memungkinkan manipulasi data pada suatu database relasional melalui object dan class pada Python (suatu bahasa pemrograman yang berbasis object-oriented). Pada model Django, terjadi pemetaan object-object Python dengan database relasional tersebut, datanya direpresentasikan melalui object Python tersebut dan memungkinkan perubahan dan pengembangan data secara efisien.
 
 
-### -----------------------------------------------------------------------TUGAS 3-----------------------------------------------------------------------
+### ----------------------------------------------------------------TUGAS 3----------------------------------------------------------------
 
 
 Screenshot pengaksesan URL proyek menggunakan Postman: https://drive.google.com/drive/folders/1gF8R9XbeALAtU6zx3gxdKBtbufiL6Kw2?usp=sharing
 
 
 ### 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
-Data delivery dibutuhkan dalam pengimplementasian sebuah platform agar seorang pengembang dapat mengirimkan data dari satu stack ke stack lainnya. Dengan adanya data delivery, data yang dibutuhkan dalam pengembangan aplikasi pada platform (seperti data dalam format HTML, JSON, dan XML) dapat diakses dan diproses secara efektif dan tepat.
+Data delivery dibutuhkan dalam pengimplementasian sebuah platform agar seorang pengembang dapat mengirimkan data dari satu stack ke stack lainnya. Dengan adanya data delivery, data yang dibutuhkan dalam pengembangan aplikasi pada platform (seperti data dalam format HTML, JSON, dan XML) dapat diakses dan diproses secara efektif dan tepat. Pengiriman data dapat berlangsung dengan cepat dan akurat serta menghindari terjadinya korupsi data atau permasalahan lain akibat data yang tidak disinkronisasikan.
 
 
 ### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
@@ -61,11 +61,40 @@ Menurut saya, dari apa yang saya dapat peroleh dari berbagai sumber tepercaya, J
 
 
 ### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
-Fungsi dari method is_valid() pada form Django adalah untuk memastikan bahwa data yang diinput oleh pengguna pada suatu form Django bersifat valid atau tidak. Method ini memeriksa data yang diinput dan menentukan validitas data tersebut sesuai dengan kondisi validasi yang ditentukan. Jika bersifat valid, akan dikembalikan nilai boolean true. Jika tidak valid, akan dikembalikan nilai boolean false.
+Fungsi dari method is_valid() pada form Django adalah untuk memastikan bahwa data yang diinput oleh pengguna pada suatu form Django bersifat valid atau tidak. Method ini memeriksa data yang diinput dan menentukan validitas data tersebut sesuai dengan kondisi validasi yang ditentukan. Jika bersifat valid, akan dikembalikan nilai boolean true. Jika tidak valid, akan dikembalikan nilai boolean false. Method ini dibutuhkan agar data yang diinput pengguna dipastikan benar dan tidak berbahaya. Jika bersifat valid, data yang diinput dapat disimpan dan diakses. Jika bersifat tidak valid, pesan error dapat ditunjukkan.
 
 
 ### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
-csrf_token merupakan token unik yang dibutuhkan saat membuat suatu form di Django sebagai elemen keamanan (security) karena dapat mencegah terjadinya serangan CSRF yang berbahaya. Jika csrf_token tidak ditambahkan pada form Django, maka aplikasi tersebut menjadi lebih rentan terhadap serangan-serangan tersebut. Hal ini tentu saja dapat dimanfaatkan oleh penyerang karena server Django tidak akan mengetahui sumber atau origin mana yang tepercaya dan yang mana yang tidak dapat dipercaya. Jadi, saat pengguna terautentikasi pada aplikasi web yang terlihat tepercaya, penyerang dapat saja membuat sebuah form palsu yang akan mengeksekusikan code berbahaya saat pengguna membukanya. Kemudian, code berbahaya itu mengirimkan request ke server dan verifikasi tidak akan terjadi sebab tidak ada csrf_token. 
+csrf_token merupakan token unik yang dibutuhkan saat membuat suatu form di Django sebagai elemen keamanan (security) karena dapat mencegah terjadinya serangan CSRF yang berbahaya. Serangan CSRF atau Cross-Site Request Forgery merupakan serangan siber yang dapat memaksa pengguna yang terautentikasi pada suatu aplikasi web untuk mengeksekusi command yang tidak baik atau berbahaya. Jika csrf_token tidak ditambahkan pada form Django, maka aplikasi tersebut menjadi lebih rentan terhadap serangan-serangan tersebut. Hal ini tentu saja dapat dimanfaatkan oleh penyerang karena server Django tidak akan mengetahui sumber atau origin mana yang tepercaya dan yang mana yang tidak dapat dipercaya. Jadi, saat pengguna terautentikasi pada aplikasi web yang terlihat tepercaya, penyerang dapat saja membuat sebuah form palsu yang akan mengeksekusikan code berbahaya saat pengguna membukanya. Code berbahaya itu dapat mengirimkan request ke server dan verifikasi tidak akan terjadi sebab tidak ada csrf_token. 
 
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+- Membuat input form untuk menambahkan objek model pada app sebelumnya:
+1. Pertama-tama, saya membuat file base.html yang berfungsi sebagai template dasar atau kerangka umum untuk halaman web lainnya (skeleton). Saya menggunakan template tags Django yang sesuai serta mengimplementasikan encoding UTF-8, mengatur layout atau viewport dari halaman webnya, serta mengimplementasikan style water.css. File base.html tersimpan dalam direktori templates di direktori utama proyek bakery, saya menambahkan kerangka tersebut ke dalam daftar template pada settings.py di direktori proyek bakery ('DIRS': [BASE_DIR / 'templates'] pada TEMPLATES).
+2. Saya menambahkan atribut id pada model Product (yang sudah dibuat di models.py saat tugas 2) yang menerima input dari field UUID, kemudian saya juga melakukan proses migrasi agar perubahan pada model tersimpan. 
+3. Saya membuat file forms.py yang akan mengandung struktur form untuk membuat Product bakery yang baru. Dalam file tersebut, saya mengimport model Product dan juga ModelForm untuk membuat form. Saya membuat class ProductForm yang merepresentasikan formnya (mengekstensi ModelForm), dengan Product sebagai model yang digunakan dan data field untuk form berupa nama produk (name), harganya (price), deskripsinya (description), kategorinya (category), dan jumlah stok yang tersedia (quantity).
+4. Pada file views.py di direktori main, saya mengimport redirect (dari django.shortcuts), ProductForm, dan model Product. Kemudian, saya menciptakan fungsi create_product(request). Fungsi ini akan membuat ProductForm baru sesuai input pengguna pada request.POST (form = ProductForm(request.POST or None)), kemudian memeriksa jika input pada form valid dan jika method requestnya berupa POST (if form.is_valid() and request.method == "POST":). Jika kondisi tersebut dipenuhi, data form disimpan dan pengguna diredirect kembali ke halaman main (return redirect('main:show_main')). Jika kondisinya tidak terpenuhi, form tersebut disimpan dalam dictionary 'context' dan template create_product.html dirender kembali pada halaman web menggunakan data form pada 'context'. Response HTML tersebut terjadi bila kondisi awal tersebut tidak dipenuhi, sehingga form tidak disimpan datanya dan dirender ulang.
+5. Kemudian, fungsi show_main(request) dimodifikasi dengan memperoleh semua object Product yang tersimpan di database (products = Product.objects.all()) dan memasukkannya sebagai data yang akan ditampilkan di halaman main ('products': product pada context).
+6. Di urls.py pada direktori main, fungsi create_product yang baru saja dibuat diimport. Setelah itu, ditambahkan path URL di urlpatterns untuk mengakses fungsi tersebut (path('create-product', create_product, name='create_product')).
+7. Di direktori main/templates, saya membuat file create_product.html (yang meng-extend base.html). Pada file tersebut, dibuat block untuk form dengan method POST dan csrf_token diimplementasikan. Kemudian, saya menggunakan syntax HTML untuk membuat tabel dan menambahkan template tag untuk menampilkan data field di forms.py sebagai suatu tabel ({{ form.as_table }}). Akhirnya, saya membuat tombol 'Add Product' untuk meng-submit request data tersebut ke fungsi create_mood_entry(request) di views.py.
+8. Akhirnya, saya memodifikasi file main.html untuk meng-extend base.html dan menggunakan syntax yang tepat untuk menampilkan semua data Product dalam bentuk tabel, saya juga menambahkan tombol "Add New Product" yang akan me-redirect pengguna ke halaman form (create_product) untuk menambahkan data Product bakery yang baru. Saya menjalankan proyek Django tersebut dan melihat bahwa halaman webnya serta proses penambahan Product dapat berjalan dengan lancar.
+
+- Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID:
+Pada views.py di direktori main, saya mengimpor HTTPResponse dan serializers untuk membuat fungsi views yang dibutuhkan.
+1. Saya membuat fungsi show_xml() yang menerima parameter request, menyimpan hasil query semua data Product dalam variabel, dan mengembalikan suatu HTTPResponse yang memanfaatkan data Product hasil query yang diserialisasi menjadi XML dan meng-set jenis konten response (content_type) sebagai application/xml.
+2. Saya membuat fungsi show_json() yang menerima parameter request, menyimpan hasil query semua data Product dalam variabel, dan mengembalikan suatu HTTPResponse yang memanfaatkan data Product hasil query yang diserialisasi menjadi JSON dan meng-set jenis konten response (content_type) sebagai application/json.
+3. Saya membuat fungsi show_xml_by_id() yang menerima parameter request, menyimpan hasil query semua data Product dalam variabel dengan id tertentu (filter(pk=id)), dan mengembalikan suatu HTTPResponse yang memanfaatkan data Product hasil query yang diserialisasi menjadi XML dan meng-set jenis konten response (content_type) sebagai application/xml.
+4. Saya membuat fungsi show_json_by_id() yang menerima parameter request, menyimpan hasil query semua data Product dalam variabel dengan id tertentu (filter(pk=id)), dan mengembalikan suatu HTTPResponse yang memanfaatkan data Product hasil query yang diserialisasi menjadi JSON dan meng-set jenis konten response (content_type) sebagai application/json.
+
+- Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2:
+Pada urls.py, keempat fungsi yang saya baru saja buat harus diimpor dan ditambahkan 4 path URL baru ke dalam urlpatterns agar dapat mengakses fungsi-fungsi tersebut. Proyek Django dijalankan lagi dan dapat diperiksa jika fungsi tersebut berhasil diimplementasikan dengan menjalankan link http://localhost:8000/xml/, http://localhost:8000/xml/[id]/, http://localhost:8000/json/, http://localhost:8000/json/[id]/.
+
+- Menjawab beberapa pertanyaan berikut pada README.md pada root folder:
+Saya menjawab 5 pertanyaan tersebut di dalam file README.md pada direktori utama proyek ini.
+
+- Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md:
+Saya sudah mengakses keempat URL menggunakan Postman dan melampirkan screenshotnya dalam bentuk link Google Drive. Screenshot pengaksesan URL proyek menggunakan Postman: https://drive.google.com/drive/folders/1gF8R9XbeALAtU6zx3gxdKBtbufiL6Kw2?usp=sharing
+
+- Melakukan add-commit-push ke GitHub:
+Setelah memastikan bahwa Tugas 3 sudah dikerjakan dengan lengkap, saya menambahkan file deploy.yml di direktori .github/workflows yang akan membantu saya dalam melakukan push ke git dan sekaligus juga ke PWS. Saya menambahkan repository secret baru pada repository bakery di GitHub menggunakan format yang sesuai. Setelah itu, saya melakukan command git add, commit, dan push ke GitHub yang sekaligus juga melakukan push ke PWS.
