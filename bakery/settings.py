@@ -1,3 +1,4 @@
+import os
 """
 Django settings for bakery project.
 
@@ -23,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gk0n5)lsf8i4p!ecv7hgq-@!$rp!4&jp((o#4@90&%+h@pvceg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+PRODUCTION = os.getenv("PRODUCTION", False)
+DEBUG = not PRODUCTION
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "janssen-benedict-bakery.pbp.cs.ui.ac.id"]
 

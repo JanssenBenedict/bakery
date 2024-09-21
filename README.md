@@ -98,3 +98,22 @@ Saya sudah mengakses keempat URL menggunakan Postman dan melampirkan screenshotn
 
 #### - Melakukan add-commit-push ke GitHub:
 Setelah memastikan bahwa Tugas 3 sudah dikerjakan dengan lengkap, saya menambahkan file deploy.yml di direktori .github/workflows yang akan membantu saya dalam melakukan push ke git dan sekaligus juga ke PWS. Saya menambahkan repository secret baru pada repository bakery di GitHub menggunakan format yang sesuai. Setelah itu, saya melakukan command git add, commit, dan push ke GitHub yang sekaligus juga melakukan push ke PWS.
+
+
+### ---------------------------------------------------------TUGAS 4---------------------------------------------------------
+
+
+### 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()?
+HttpResponseRedirect() merupakan suatu fungsi dari module django.http yang menghasilkan response HTTP dengan status code 302 agar dapat dilakukan redirect atau mengarahkan pengguna ke suatu URL spesifik, sedangkan redirect() merupakan suatu fungsi dari module django.shortcut yang akan mengembalikan suatu instance HttpResponseRedirect() untuk melakukan hal yang sama. HttpResponseRedirect() hanya menerima URL sebagai argumen dan response yang diterima akan membuat browser melakukan redirect ke URL tersebut. Sementara itu, redirect() tidak hanya menerima URL eksplisitnya sebagai argumen, tapi juga nama pattern URL, instance/object suatu model, ataupun nama suatu view. Fungsi shortcut redirect() bersifat lebih fleksibel dan lebih mudah untuk digunakan karena dapat menerima berbagai jenis parameter, sedangkan HttpResponseRedirect() hanya menerima URL eksplisitnya. Hanya saja, HttpResponseRedirect() mungkin dapat bersifat lebih efektif dalam kasus di mana masih perlu dilakukan beberapa pengaturan atau modifikasi terhadap response tersebut sebelum harus dikembalikan.
+
+
+### 2. Jelaskan cara kerja penghubungan model Product dengan User!
+Penghubungan model Product dengan model User dilakukan menggunakan ForeignKey. Dalam tugas ini, models.ForeignKey() dari modul django.db berfungsi menghubungkan satu Product dengan satu User melalui sebuah hubungan di mana suatu produk pasti terasosiasikan dengan seorang user. Di dalam model Product, ForeignKey diimplementasikan dengan kode user=models.ForeignKey(User, on_delete=models.CASCADE). Ini menciptakan suatu atribut baru yang dimiliki oleh semua object Product, yaitu user yang membuat Product tersebut. ForeignKey menunjuk pada model User yang menghasilkan instance Product tersebut dan Product akan dihapus dari database bila User tersebut juga dihapus dari sistem.
+
+### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
+
+### 4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
