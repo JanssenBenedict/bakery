@@ -1,19 +1,17 @@
 <!-- Tailwind CSS Navigation Bar -->
 <nav class="bg-green-700 shadow-lg fixed top-0 left-0 z-40 w-screen">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <div class="flex items-center">
-        <h1 class="text-2xl font-bold text-center text-white">Janssen's Bakery</h1>
-      </div>
-      <div class="hidden md:flex items-center">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center h-16">
+      <div class="hidden md:flex items-center justify-between w-full">
         {% if user.is_authenticated %}
         <div class="flex items-center space-x-10">
+          <h1 class="text-2xl font-bold text-center text-white">Janssen's Bakery</h1>
           <a href="{% url 'main:show_main' %}" class="text-white font-bold">Home</a>
           <a href="{% url 'main:show_main' %}" class="text-white font-bold">Products</a>
           <a href="" class="text-white font-bold">Categories</a>
           <a href="" class="text-white font-bold">Cart</a>
-          <a class="text-transparent font-bold">FillerLineFillerLineFillerLineFillerLineFiller</a>
         </div>
+        <div class="flex items-center space-x-5">
           <span class="text-white mr-4 font-bold">Hello, {{ user.username }}!</span>
           <a href="{% url 'main:logout' %}" class="text-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
             Log Out
@@ -26,6 +24,7 @@
             Register
           </a>
         {% endif %}
+        </div>
       </div>
       <div class="md:hidden flex items-center">
         <button class="mobile-menu-button">
