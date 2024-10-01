@@ -1,34 +1,26 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block meta %}
 <title>Janssen's Bakery</title>
 {% endblock meta %}
 {% block content %}
-{% include 'navbar2.html' %}
-<div class="container-fluid px-4 py-20 min-h-screen flex flex-col bg-green-100">
+{% include 'navbar.html' %}
+<div class="container-fluid px-6 py-20 min-h-screen flex flex-col bg-green-100">
   <div class="mb-4 py-1">
-      <div class="row relative z-10">
-          <div class="col-12 md:col-4">
-              {% include "card_info.html" with title='NPM' value=npm %}
-          </div>
-          <div class="col-12 md:col-4">
-              {% include "card_info.html" with title='Name' value=name %}
-          </div>
-          <div class="col-12 md:col-4">
-              {% include "card_info.html" with title='Class' value=class %}
-          </div>
-      </div>
+      {% include "card_info.html" with title='NPM' value=npm %}
+      {% include "card_info.html" with title='Name' value=name %}
+      {% include "card_info.html" with title='Class' value=class %}
   </div>
   <div class="flex justify-between items-center py-0">
     <h6 class="font-bold text-left">Last Login Session: {{ last_login }}</h6>
-    <a href="{% url 'main:create_product' %}" class="btn bg-green-500 font-bold py-2 px-4 border-2 border-black">
+    <a href="{% url 'main:create_product' %}" class="btn bg-green-600 font-bold py-2 px-4 border-2 border-black text-center" style="color:white">
       Add New Product
     </a>
   </div>
 
   {% if not products %}
   <div class="flex flex-col items-center justify-center" style="min-height: 24rem;">
-      <img src="{% static 'pics/no.png' %}" alt="Nothing Here" class="mb-4" style="width: 24rem; height: 24rem;"/>
+      <img src="{% static 'pics/no.png' %}" alt="Nothing Here" class="mt-4 mb-4 py-2" style="width: 17rem; height: 17rem;"/>
       <h4 class="mb-0 text-center font-bold">Apologies, There Are No Products Available At The Moment</h1>
   </div>
   {% else %}
