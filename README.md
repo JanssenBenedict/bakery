@@ -153,3 +153,56 @@ Pada views.py di direktori main, perlu diimpor komponen penting seperti HttpResp
 
 - Melakukan add-commit-push ke GitHub:
 Setelah memastikan bahwa Tugas 4 telah dikerjakan dengan lengkap, kemudian saya melakukan command git add, commit, dan push ke GitHub yang sekaligus juga melakukan push ke PWS.
+
+
+### ---------------------------------------------------------TUGAS 5---------------------------------------------------------
+
+
+### 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Urutan prioritas pengambilan CSS selector:
+1. Inline Styles: Inline Styles merupakan kategori CSS selector yang memiliki prioritas yang tertinggi.
+Contohnya adalah: <h3 style="color: blue;">This.</h3>
+2. Important Rule: Hal tersebut dapat tidak berlaku hanya jika digunakan !important (Important Rule), yang mampu melakukan override pada CSS selector manapun, bahkan Inline Styles.
+Contohnya adalah: #this { color: blue !important; }
+3. ID Selectors: ID Selectors memiliki prioritas yang lebih rendah daripada Inline Styles, tetapi lebih tinggi dibandingkan dengan Class Selectors, Pseudo-Class Selectors, dan Attribute Selectors.
+Contohnya adalah: #this { color: blue; }
+4. Class Selectors, Pseudo-Class Selectors, dan Attribute Selectors: Memiliki prioritas yang lebih rendah daripada ID Selectors, tetapi lebih tinggi dibandingkan Elements dan Pseudo-Elements.
+Contohnya adalah: .this { color: blue; }, p[data-type="something"] { color: blue; }, dan p:hover { color: blue; }
+5. Elements (Tag) dan Pseudo-Elements: Merupakan kategori CSS selector dengan prioritas yang terendah.
+Contohnya adalah: p { color: blue; } dan p::after { content: "This = "; }
+
+
+### 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Responsive design merupakan konsep yang penting dalam pengembangan aplikasi web agar dapat meningkatkan kualitas penampilan halaman suatu aplikasi web pada berbagai perangkat berbeda, terutama pada perangkat dengan layar yang lebih kecil, seperti perangkat mobile. Dengan konsep responsive design, suatu halaman aplikasi web yang dapat ditampilkan secara rapi pada perangkat desktop dapat dibuat menjadi "mobile-friendly" atau terlihat lebih rapi dan baik untuk dipandang pada perangkat mobile juga. Contoh aplikasi yang sudah menerapkan responsive design adalah aplikasi-aplikasi seperti Shopee, Canva, Google Chrome, dan lain-lain sebab semua aplikasi tersebut mengimplementasikan suatu variasi penampilan halaman web pada perangkat mobile yang rapi dan sesuai dengan ukuran layar pada suatu perangkat mobile. Aplikasi yang terlihat belum menerapkan responsive design adalah sistem SIAK NG, sebab penampilan yang ditunjukkan bila sistem tersebut diakses melalui perangkat mobile terlihat kurang rapi, penampilan halaman web sistem ini yang terlihat lebih rapi hanya ditampilkan pada perangkat desktop.
+
+### 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+1. Margin: Margin merupakan suatu ruang transparan yang terdapat di luar border suatu elemen dan berfungsi dalam mengatur jarak antar-elemen.
+2. Border: Border merupakan suatu garis yang berada di antara padding isi/konten suatu elemen dengan ruang margin elemen tersebut.
+3. Padding: Padding merupakan suatu ruang yang berada di antara garis border dengan isi/konten suatu elemen.
+Cara pengimplementasiannya adalah:
+.this {
+    margin: 22px;
+    border: 1px dashed red;
+    padding: 15px;
+}
+Penjelasan:
+- Margin telah di-set menjadi 22 pixel. Artinya, jarak elemen ini dengan elemen lainnya (baik itu elemen lain yang terdapat di atas, di bawah, di samping kiri, ataupun di samping kanan elemen ini) adalah 22 pixel.
+- Border yang telah di-set berukuran 1 pixel, berupa garis putus-putus, dan berwarna merah.
+- Padding telah di-set menjadi 15 pixel. Artinya, jarak antara isi/konten elemen dengan border (baik itu sisi border yang terdapat di atas, di bawah, di samping kiri, ataupun di samping kanan isi/konten elemen ini) adalah 15 pixel.
+
+
+### 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Flexbox (atau Flexible Box) layout merupakan suatu sistem layout yang berfungsi dalam pengaturan elemen secara responsif dalam satu dimensi (satu baris atau satu kolom). Kegunaan dari Flexbox layout adalah untuk menyimpan dan menyusun elemen-elemen pada satu baris atau kolom serta mengatur posisi dan ukuran elemen-elemen tersebut secara fleksibel berdasarkan ruang yang ada. Grid layout merupakan suatu sistem layout yang berfungsi dalam pengaturan elemen secara responsif dalam suatu grid dua dimensi (seperti suatu tabel). Kegunaan dari Grid layout adalah untuk menyimpan dan menyusun elemen-elemen pada suatu layout dua dimensi (dengan banyak baris dan kolom) serta lebih cocok dalam pengaturan suatu desain yang bersifat lebih kompleks.
+
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+* Implementasikan fungsi untuk menghapus dan mengedit product.
+Jawaban: Pertama-tama, saya harus mengimplementasikan fungsi view untuk melakukan penghapusan dan pengeditan product pada views.py. Untuk proses pengeditan product, saya menciptakan fungsi edit_product(request, id) yang memperoleh object product dengan suatu ID tertentu saja. Kemudian, saya masukkan data object product tersebut ke dalam ProductForm agar data atribut product tersebut langsung berada pada isi field di formnya (form = ProductForm(request.POST or None, instance=product)). Kemudian, perlu diperiksa validitas darig
+
+* Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut:
+- Kustomisasi halaman login, register, dan tambah product semenarik mungkin.
+- Kustomisasi halaman daftar product menjadi lebih menarik dan responsive. Kemudian, perhatikan kondisi berikut:
+1. Jika pada aplikasi belum ada product yang tersimpan, halaman daftar product akan menampilkan gambar dan pesan bahwa belum ada product yang terdaftar.
+2. Jika sudah ada product yang tersimpan, halaman daftar product akan menampilkan detail setiap product dengan menggunakan card (tidak boleh sama persis dengan desain pada Tutorial!).
+- Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut!
+- Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.

@@ -20,9 +20,8 @@ def show_main(request):
         'name': request.user.username,
         'class': 'PBP D',
         'products': products,
-        'last_login': request.user.last_login,
+        'last_login': request.user.last_login if request.user.last_login else None,
     }
-
     return render(request, "main.html", context)
 
 def create_product(request):
@@ -81,3 +80,15 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    form = ProductForm(request.POST or None, instance = Product.objects.get(pk=id))
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
+
+def delete_product(request, id):
+    Product.objects.get(pk=id).delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
