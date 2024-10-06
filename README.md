@@ -81,7 +81,7 @@ csrf_token merupakan token unik yang dibutuhkan saat membuat suatu form di Djang
 4. Pada file views.py di direktori main, saya mengimport redirect (dari django.shortcuts), ProductForm, dan model Product. Kemudian, saya menciptakan fungsi create_product(request). Fungsi ini akan membuat ProductForm baru sesuai input pengguna pada request.POST (form = ProductForm(request.POST or None)), kemudian memeriksa jika input pada form valid dan jika method requestnya berupa POST (if form.is_valid() and request.method == "POST":). Jika kondisi tersebut dipenuhi, data form disimpan dan pengguna diredirect kembali ke halaman main (return redirect('main:show_main')). Jika kondisinya tidak terpenuhi, form tersebut disimpan dalam dictionary 'context' dan template create_product.html dirender kembali pada halaman web menggunakan data form pada 'context'. Response HTML tersebut terjadi bila kondisi awal tersebut tidak dipenuhi, sehingga form tidak disimpan datanya dan dirender ulang.
 5. Kemudian, fungsi show_main(request) dimodifikasi dengan memperoleh semua object Product yang tersimpan di database (products = Product.objects.all()) dan memasukkannya sebagai data yang akan ditampilkan di halaman main ('products': product pada context).
 6. Di urls.py pada direktori main, fungsi create_product yang baru saja dibuat diimport. Setelah itu, ditambahkan path URL di urlpatterns untuk mengakses fungsi tersebut (path('create-product', create_product, name='create_product')).
-7. Di direktori main/templates, saya membuat file create_product.html (yang meng-extend base.html). Pada file tersebut, dibuat block untuk form dengan method POST dan csrf_token diimplementasikan. Kemudian, saya menggunakan syntax HTML untuk membuat tabel dan menambahkan template tag untuk menampilkan data field di forms.py sebagai suatu tabel ({{ form.as_table }}). Akhirnya, saya membuat tombol 'Add Product' untuk meng-submit request data tersebut ke fungsi create_mood_entry(request) di views.py.
+7. Di direktori main/templates, saya membuat file create_product.html (yang meng-extend base.html). Pada file tersebut, dibuat block untuk form dengan method POST dan csrf_token diimplementasikan. Kemudian, saya menggunakan syntax HTML untuk membuat tabel dan menambahkan template tag untuk menampilkan data field di forms.py sebagai suatu tabel ({{ form.as_table }}). Akhirnya, saya membuat tombol 'Add Product' untuk meng-submit request data tersebut ke fungsi create_product(request) di views.py.
 8. Akhirnya, saya memodifikasi file main.html untuk meng-extend base.html dan menggunakan syntax yang tepat untuk menampilkan semua data Product dalam bentuk tabel, saya juga menambahkan tombol "Add New Product" yang akan me-redirect pengguna ke halaman form (create_product) untuk menambahkan data Product bakery yang baru. Saya menjalankan proyek Django tersebut dan melihat bahwa halaman webnya serta proses penambahan Product dapat berjalan dengan lancar.
 
 #### - Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID:
@@ -236,3 +236,72 @@ Saya menjawab pertanyaan-pertanyaan tersebut pada file README.md di direktori ut
 - Melakukan add-commit-push ke GitHub.
 Jawaban:
 Setelah memastikan bahwa Tugas 5 telah dikerjakan dengan lengkap, kemudian saya melakukan command git add, commit, dan push ke GitHub yang sekaligus juga melakukan push ke PWS.
+
+
+### ---------------------------------------------------------TUGAS 6---------------------------------------------------------
+
+
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+Manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web adalah:
+- Peningkatkan interaktivitas antara suatu halaman web (yang memanfaatkan JavaScript) dengan seorang pengguna melalui kemampuan JavaScript untuk mengandali event pada halaman web tersebut.
+- Perubahan atau manipulasi terhadap konten pada suatu halaman web secara dinamis dan efisien. JavaScript memungkinkan data atau konten yang ditampilkan pada suatu halaman web untuk berubah sesuai perilaku pengguna tanpa harus melakukan refresh terhadap halaman web tersebut.
+- Eksekusi kode JavaScript dilakukan pada peramban pengguna, bukan pada server situs web, sehingga pengimplementasian JavaScript dapat menghemat waktu dan penggunaan bandwith karena kompleksitas kode JavaScript tidak akan memengaruhi performa server situs web tersebut.
+- JavaScript bersifat kompatibel dengan semua browser web modern sehingga script JavaScript yang diimplementasikan pada template halaman HTML web dapat berfungsi secara konsisten pada berbagai browser berbeda (Google Chrome, Mozilla Firefox, dan lainnya).
+
+
+### 2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Fungsi dari penggunaan await adalah untuk menunggu hasil dari fungsi JavaScript yang dapat mengembalikan nilai secara asinkronus, seperti fungsi fetch(). Bila await dimanfaatkan, JavaScript akan menunggu hingga operasi pada fungsi fetch() selesai dilaksanakan dulu sebelum berlanjut ke baris kode berikutnya yang ada. Bila await tidak digunakan, JavaScript akan terus menjalankan baris-baris kode yang berada di bawah baris kode dengan fungsi fetch() tanpa menunggu operasi pada fungsi fetch() untuk selesai. Bila terdapat kode yang memerlukan hasil yang diperoleh dari operasi pada fungsi fetch(), terdapat kemungkinan terjadinya kesalahan pada data yang diperoleh sebab fungsi fetch() belum selesai melaksanakan operasinya.
+
+
+### 3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Decorator csrf_exempt perlu digunakan pada fungsi view yang digunakan untuk AJAX POST karena request AJAX POST yang terkirim tidak mengandung token CSRF. Pada Django, adanya proteksi atau perlindungan CSRF merupakan default pada semua fungsi view yang mengandali request POST dan membutuhkan token CSRF agar request tersebut diterima. Agar fungsi view tersebut dapat menerima request AJAX POST tersebut tanpa token CSRF, dibutuhkan decorator csrf_exempt, yang memungkinkan Django untuk mengabaikan proteksi atau perlindungan CSRF pada view tersebut.
+
+
+### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Melakukan pembersihan data (sanitization) pada frontend saja tidak cukup sebab seorang penyerang yang memasukkan input data yang berbahaya pada suatu aplikasi web dapat saja melewati proses pembersihan data dan mengirimkan input data yang berbahaya kepada server secara langsung. Bila input data yang berbahaya dari penyerang berhasil melewati (mem-bypass) pembersihan data pada frontend dan tidak ada pembersihan data pada backend, data yang berbahaya tersebut akan tersimpan di dalam database aplikasi web dan membahayakan keamanan aplikasi web tersebut. Oleh karena itu, pembersihan data tidak dilakukan di frontend saja, tetapi juga dilakukan di backend agar input data yang dimasukkan oleh pengguna dapat menjadi data yang bersifat "bersih" sebelum disimpan dan digunakan oleh aplikasi web tersebut.
+
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+* Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX:
+
+- AJAX GET:
+
+1. Ubahlah kode cards data Product agar dapat mendukung AJAX GET.
+Penjelasan:
+Untuk membuat kode card Product dapat mendukung AJAX GET, saya menghapus potongan kode pada template main.html yang menggunakan block conditional dan for loop untuk memperoleh data Product serta menampilkan card Product yang ada atau menampilkan gambar bila tidak ada Product yang terdaftar pada sistem. Setelah itu, saya menggantikan potongan kode tersebut dengan satu elemen container div dengan ID "product_cards" (<div id="product_cards"></div>). Pada bagian block script, saya mengimplementasikan fungsi JavaScript asinkronus getProducts() yang memanfaatkan fetch() API untuk memperoleh data JSON masing-masing Product yang dibuat oleh pengguna secara asinkronus. Data JSON tersebut kemudian di-parse menjadi objek JavaScript dan dikembalikan oleh fungsi tersebut. Kemudian, saya membuat fungsi JavaScript asinkronus refreshProducts(), fungsi ini akan melakukan refresh terhadap data Product yang dibuat oleh pengguna dan menampilkannya pada container dengan ID "product_cards". Pertama-tama, fungsi ini menghapus isi HTML tersebut (isi className dan innerHTML) dan memanggil fungsi getProducts() untuk memperoleh data setiap Product. Jika data tersebut kosong (belum ada Product), isi className dan innerHTML akan di-set untuk menampilkan gambar dan pesan bahwa tidak ada Product yang tersedia pada sistem. Jika data tersebut tidak kosong, isi className akan di-set menjadi container dengan berbagai kolom untuk menampilkan setiap card Product dan innerHTML (child element) akan diisi dengan kode untuk membentuk dan menampilkan card yang berisi data mengenai Product tersebut (for each loop digunakan untuk memperoleh masing-masing Product yang dibuat), mirip dengan kode yang terdapat pada template card_product.html pada Tugas 5. Fungsi tersebut dipanggil setiap kali halaman web tersebut dibuka. Kode cards data Product ini mendukung AJAX GET karena data Product diperoleh secara asinkronus menggunakan fetch() API.
+
+2. Lakukan pengambilan data Product menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+Penjelasan:
+Untuk melakukan pengambilan data Product dengan AJAX GET, pada file views.py, saya menghapus baris kode yang memperoleh semua object Product berdasarkan pengguna dan menyimpannya pada daftar context di fungsi view show_main(). Karena fungsi JavaScript asinkronus getProducts() memperoleh data Product dalam bentuk JSON melalui fungsi view show_json(), baris kode untuk memperoleh semua object Product berdasarkan pengguna yang membuatnya ditambahkan ke fungsi show_json() (data=Product.objects.filter(user=request.user)). Dengan ini, setiap data Product yang diambil merupakan Product yang dibuat oleh pengguna yang terautentikasi ke dalam sistem tersebut saja.
+
+- AJAX POST:
+
+1. Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan Product.
+Penjelasan:
+Tombol yang saya buat untuk membuka modal dengan form untuk menambahkan Product akan ditampilkan di sebelah tombol "Add New Product". Cara pengimplementasiannya adalah:
+<button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-green-600 hover:bg-green-700 border-2 border-black text-white font-bold py-2 px-4 duration-300" onclick="showModal();">Add New Product by AJAX</button>
+Saat tombol tersebut diklik, modal dengan ID "crudModal" ditampilkan dan fungsi JavaScript showModal().
+Agar tombol tersebut dapat mengeksekusikan apa yang perlu dijalankan bila diklik, hal yang perlu dilakukan adalah mengimplementasikan modal form tersebut ke dalam aplikasi Bakery ini. Pada modal ini, container div utama yang terluar (dengan ID "crudModal") memberikan styling inisial pada modal dan awalnya masih tidak ditunjukkan (hidden). Kemudian, container div dengan ID "crudModalContent" mengandung konten dari modal form yang ingin dibentuk dengan ukuran tampilan yang berbeda tergantung pada ukuran layar yang menampilkannya. Di dalam container tersebut, terdapat header, body, dan footer modal. Header modal merupakan bagian yang membuat dan menampilkan judul form dan tombol untuk menutup modal (tombol "X"). Body modal merupakan bagian yang membuat dan menampilkan form baru agar pengguna dapat menginput data untuk Product baru yang ingin dibuat, field input data yang disediakan kepada pengguna untuk diisi adalah nama, harga, deskripsi, kategori, dan kuantitas Product tersebut. Akhirnya, footer untuk modal membuat dan menampilkan tombol untuk membatalkan penambahan Product baru pada form (Cancel) dan tombol untuk meng-submit data yang diinput untuk membuat Product baru (Create Product). Akhirnya, pada block script, perlu diimplementasikan fungsi-fungsi JavaScript agar modal dapat berfungsi, yaitu showModal() yang akan menampilkan modal dengan form yang telah dibuat serta hideModal() yang akan menutup tampilan modal bila tombol Cancel atau tombol "X".
+
+2. Buatlah fungsi view baru untuk menambahkan Product baru ke dalam basis data.
+Penjelasan:
+Fungsi view baru yang perlu dibuat untuk menambahkan Product baru ke dalam basis data dengan AJAX POST adalah fungsi add_product_ajax(request). Fungsi tersebut memperoleh informasi mengenai nama, harga, deskripsi, kategori, dan kuantitas Product tersebut dari data POST request tersebut. Selain itu, data mengenai user atau pengguna yang mengirimkan request juga diperoleh. Kemudian, diciptakan object Product baru menggunakan data yang sudah diperoleh dan disimpan ke dalam database. Akhirnya, fungsi tersebut mengembalikan response dengan status code 201 untuk mengindikasikan bahwa proses penambahan Product baru berhasil. Selain itu, ditambahkan decorator csrf_exempt (Django tidak memeriksa keberadaan csrf_token pada POST request) dan require_POST (fungsi ini hanya dapat diakses saat pengguna mengirimkan POST request ke fungsi tersebut).
+
+3. Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+Penjelasan:
+Pada file urls.py, saya mengimpor fungsi view add_product_ajax yang baru saja diciptakan dan menambahkan path URL untuk mengakses fungsi add_product_ajax() pada urlpatterns di urls.py, nama rute path URL tersebut yang saya pilih adalah "create-ajax/" (path('create-ajax/', add_product_ajax, name='add_product_ajax')).
+
+4. Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+Penjelasan:
+Penghubungan form pada modal yang saya buat ke path /create-ajax/ dilakukan melalui pengimplementasian fungsi JavaScript addProduct() di block script pada main.html. Fungsi ini menggunakan fetch() API untuk mengirimkan request POST yang memperoleh data dari field input di form menambahkan Product baru dan memasukkannya ke body requestnya. Setelah proses tersebut selesai, fungsi asinkronus refreshProducts() dipanggil untuk melakukan refresh terhadap bagian halaman web yang menampung tampilan card semua Product yang dibuat. Kemudian, field input data pada form di modal dikosongkan dan modal tersebut ditutup. Akhirnya, pada block script itu juga, ditambahkan event listener pada form tersebut di mana mengklik tombol untuk meng-submit input data Product baru akan memanggil fungsi addProduct() dan mematikan default behavior dari event submisi pada form tersebut (e.preventDefault()).
+
+5. Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar Product terbaru tanpa reload halaman utama secara keseluruhan.
+Penjelasan:
+Tanpa melakukan reload halaman web utama secara keseluruhan, setelah saya mengklik tombol "Create Product" pada form modal setelah menginput data yang dibutuhkan pada form tersebut, card untuk object Product baru yang saya baru saja tambahkan ke dalam sistem langsung muncul pada bagian daftar semua card di halaman web utama aplikasi Bakery ini. Refresh terjadi secara asinkronus dan saya tidak perlu melakukan reload secara keseluruhan untuk melihat tampilan card Product baru itu.
+
+* Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+Saya menjawab pertanyaan-pertanyaan tersebut pada file README.md di direktori utama proyek ini.
+
+* Melakukan add-commit-push ke GitHub.
+Setelah memastikan bahwa Tugas 6 telah dikerjakan dengan lengkap, kemudian saya melakukan command git add, commit, dan push ke GitHub yang sekaligus juga melakukan push ke PWS.
