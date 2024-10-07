@@ -300,8 +300,8 @@ Penghubungan form pada modal yang saya buat ke path /create-ajax/ dilakukan mela
 Penjelasan:
 Tanpa melakukan reload halaman web utama secara keseluruhan, setelah saya mengklik tombol "Create Product" pada form modal setelah menginput data yang dibutuhkan pada form tersebut, card untuk object Product baru yang saya baru saja tambahkan ke dalam sistem langsung muncul pada bagian daftar semua card di halaman web utama aplikasi Bakery ini. Refresh terjadi secara asinkronus dan saya tidak perlu melakukan reload secara keseluruhan untuk melihat tampilan card Product baru itu.
 
---- Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+--- Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas):
 Saya menjawab pertanyaan-pertanyaan tersebut pada file README.md di direktori utama proyek ini.
 
---- Melakukan add-commit-push ke GitHub.
+--- Melakukan add-commit-push ke GitHub:
 Setelah memastikan bahwa Tugas 6 telah dikerjakan dengan lengkap, kemudian saya melakukan command git add, commit, dan push ke GitHub yang sekaligus juga melakukan push ke PWS.
