@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block meta %}
 <title>Login</title>
 {% endblock meta %}
 
 {% block content %}
 {% include 'navbar.html' %}
-<div class="min-h-screen flex items-center justify-center w-screen bg-green-100 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center w-screen py-12 px-4 sm:px-6 lg:px-8" style="background-image: url('{% static 'pics/bakeryBG.jpg' %}'); background-repeat: repeat; background-size: contain;">
   <div class="max-w-md w-full space-y-8">
     <div>
       <h2 class="mt-6 text-center text-black text-3xl font-extrabold text-black">
@@ -56,8 +56,8 @@
     </div>
     {% endif %}
 
-    <div class="text-center mt-4">
-      <p class="text-sm text-black">
+    <div class="text-center mt-4 rounded-lg bg-black p-2">
+      <p class="text-sm text-white">
         No Account? Not To Worry,
         <a href="{% url 'main:register' %}" class="font-medium text-green-500 hover:text-green-500">
           Register Here!
